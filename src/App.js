@@ -6,8 +6,23 @@ class App extends React.Component {
     state = {advice: ''};
 
     componentDidMount() {
-        console.log('COMPONENT DID MOUNT')
+        this.fetchAdvices();
     }
+
+    
+    fetchAdvices= () =>{
+        axios.get('https://api.adviceslip.com/advice')
+
+        .then((res) =>{
+            const { advice } = res.data.slip;
+            console.log(advice)
+
+        })
+        .catch((err) =>{
+            console.log(err)
+
+        });
+    };
 
     render() {
         return (
